@@ -14,7 +14,9 @@ export const IS_DEV = process.env.NODE_ENV === "development";
  */
 export const BACKEND_URL =
   process.env.BACKEND_PUBLIC_URL ??
-  process.env.RAILWAY_PUBLIC_DOMAIN_VALUE ??
+  (process.env.RAILWAY_PUBLIC_DOMAIN
+    ? `https://${process.env.RAILWAY_PUBLIC_DOMAIN}`
+    : undefined) ??
   "http://localhost:9000";
 
 /**
@@ -68,6 +70,15 @@ export const MINIO_ENDPOINT = process.env.MINIO_ENDPOINT;
 export const MINIO_ACCESS_KEY = process.env.MINIO_ACCESS_KEY;
 export const MINIO_SECRET_KEY = process.env.MINIO_SECRET_KEY;
 export const MINIO_BUCKET = process.env.MINIO_BUCKET; // Optional, if not set bucket will be called: medusa-media
+
+/**
+ * (optional) S3-compatible storage configuration (e.g., Supabase Storage)
+ */
+export const S3_ENDPOINT = process.env.S3_ENDPOINT;
+export const S3_BUCKET = process.env.S3_BUCKET;
+export const S3_REGION = process.env.S3_REGION;
+export const S3_ACCESS_KEY_ID = process.env.S3_ACCESS_KEY_ID;
+export const S3_SECRET_ACCESS_KEY = process.env.S3_SECRET_ACCESS_KEY;
 
 /**
  * (optional) Resend API Key and from Email - do not set if using SendGrid
