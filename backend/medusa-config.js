@@ -107,7 +107,7 @@ const medusaConfig = {
             resolve: "@medusajs/auth-emailpass",
             id: "emailpass",
             options: {
-              // Email/password authentication for customers
+              // Email/password authentication for customers and admin
             },
           },
         ],
