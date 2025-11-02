@@ -51,7 +51,8 @@ export default async function handleAuthIdentityCreated({
       const customerId = existingCustomers[0].id;
       
       // Update the auth identity's app_metadata with customer_id
-      await authModuleService.updateAuthIdentities(data.id, {
+      await authModuleService.updateAuthIdentities({
+        id: data.id,
         app_metadata: {
           customer_id: customerId,
         },
@@ -63,14 +64,15 @@ export default async function handleAuthIdentityCreated({
 
     // Create a new customer
     const customer = await customerModuleService.createCustomers({
-      email: email,
+      email: email as string,
       has_account: true,
     });
 
     console.log("✅ Customer created:", customer);
 
     // Update the auth identity's app_metadata with the new customer_id
-    await authModuleService.updateAuthIdentities(data.id, {
+    await authModuleService.updateAuthIdentities({
+      id: data.id,
       app_metadata: {
         customer_id: customer.id,
       },
